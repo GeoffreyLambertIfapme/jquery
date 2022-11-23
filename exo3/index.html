@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+    <head>
+        <!-- CSS -->
+        <link href="../shared/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <h1>
+            Sauvez moi
+        </h1>
+        <p>
+            Sauver le pseudo du joueur dans le session Storage de l'utilisateur pour lui afficher au refresh de la page
+        </p>
+
+        <main class="container text-bg-light">
+
+            <div id="user-info" style="display: none;">
+                <span id="username"></span>
+                <button id="delete">Supprimer</button>
+            </div>
+            <div id="form" style="display: none;">
+                <input id="from-user" type="text" />
+                <button id="validation">Validation</button>
+            </div>
+
+        </main>
+
+        <script>
+           const sessionStorageUserNameKey = "username";
+           let pseudo = sessionStorage.getItem(sessionStorageUserNameKey);
+
+            const userInfo = document.getElementById("user-info");
+            const userMessage = document.getElementById("username");
+            const deleteButton = document.getElementById("delete");
+
+            const form = document.getElementById("form");
+            const input = document.getElementById("from-user");
+            const validation = document.getElementById("validation");
+
+
+           function switchContent() {
+                if(pseudo){
+                    userInfo.style.display = "block";
+                    form.style.display = "none";
+                    userMessage.innerText = `Coucou, ${pseudo}!`;
+                    return;
+                }
+
+                form.style.display = "block";
+                userInfo.style.display = "none";
+           }
+           function manageUserName(username) {
+                if(username){
+                    sessionStorage.setItem(sessionStorageUserNameKey, username);
+                } else {
+                    sessionStorage.removeItem(sessionStorageUserNameKey);
+                }
+                
+                pseudo = username;
+           }
+           function setUserName(username) {
+                if(!username){
+                    return;
+                }
+                manageUserName(username);
+                switchContent();
+           }
+
+
+           validation.addEventListener('click', () => {
+                const username = input.value;
+
+                setUserName(username);
+           });
+           deleteButton.addEventListener('click', () => {
+                manageUserName("");
+                switchContent();
+            });
+           
+            switchContent();
+        </script>
+    </body>
+</html>

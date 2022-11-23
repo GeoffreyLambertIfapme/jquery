@@ -2,24 +2,94 @@
     <head>
         <!-- CSS -->
         <link href="../shared/style.css" rel="stylesheet">
-
-        <!-- JS -->
-        <script type="text/javascript" src="../shared/jquery.js"></script>
-        <script type="text/javascript" src="./index.js"></script>
-
     </head>
     <body>
         <h1>
-            Liste des postes
+            Validation de formulaire
         </h1>
         <p>
-            Recupérer la liste des postes situé a cette address "GET" https://jsonplaceholder.typicode.com/posts et afficher le contenu 
-            Ajouter un button qui permet de recupérer et d'afficher la liste des commantaires de ce poste avec la request "GET" https://jsonplaceholder.typicode.com/posts/{id du post}/comments
+            S'assurer que le champs input contient une chaine de caractère de minimum 3 caractères et maximum 10 lors du click sur le bouton
+            Afficher un message d'erreur ou de succès suivant le resultat
         </p>
 
         <main class="container text-bg-light">
-            
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" />
+                <button class="btn btn-info" type="button">Valider</button>
+            </div>
+            <div id="message">
+                [message ici]
+            </div>
         </main>
-        
+
+        <script>
+            const StatusType = {
+                Zero: 0,
+                Min: 1,
+                Max: 2,
+                Valid: 3,
+                Exact: 4,
+                Other: 5
+            }
+
+            const input = document.querySelector('input');
+            const btn = document.querySelector('button');
+            const message = document.getElementById('message');
+
+            function validation() {
+                const content = input.value;
+
+                const status = getStatus(content);
+                
+                displayMessage(status);
+            }
+
+            function getStatus(content) {
+                const size = content.length;
+
+                if(size === 0){
+                    return StatusType.Zero;
+                }
+                if(size < 3){
+                    return StatusType.Min;
+                }
+                if(size === 5){
+                    return StatusType.Exact;
+                }
+                if(size > 10){
+                    return StatusType.Max;
+                }
+
+                // size !== 0 && size !== 5 && size >= 3 && size <=10
+                return StatusType.Valid;
+
+            }
+
+            function displayMessage(status) {
+                switch (status) {
+                    case StatusType.Zero: 
+                        message.innerText = "Merci d'encoder une valeur !";
+                    break;
+                    case StatusType.Min: 
+                        message.innerText = "Chaine trop petite !";
+                    break;
+                    case StatusType.Max: 
+                        message.innerText = "Chaine trop grande !";
+                    break;
+                    case StatusType.Valid: 
+                        message.innerText = "Well done !";
+                        break;
+                    case StatusType.Exact: 
+                        message.innerText = "You win !";
+                        break;
+                    default: message.innerText = "Une erreur est survenue !";
+                    break;
+
+                }
+            }
+           
+            btn.addEventListener('click', validation);
+
+        </script>
     </body>
 </html>
