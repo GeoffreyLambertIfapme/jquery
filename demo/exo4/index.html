@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <head>
+        <!-- CSS -->
+        <link href="../shared/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <h1>
+            Stop it !!!
+        </h1>
+        <p>
+            Ajouter un element div toutes les secondes
+        </p>
+
+        <main id="main" class="container text-bg-light">
+            <div>first !!</div>
+        </main>
+
+        <script>
+            // creer une function pour ajouter une div à mon contenu
+            const main = document.getElementById("main");
+
+            function ajoutElement() {
+                const myDiv = document.createElement('div');
+                myDiv.textContent = "ho une div!";
+
+                main.appendChild(myDiv);
+            }
+           // trouver comment utiliser le setInterval => exemple: setInterval(flashText, 1000);
+           setInterval(ajoutElement, 1000);
+        </script>
+    </body>
+</html>
