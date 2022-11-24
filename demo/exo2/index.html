@@ -1,7 +1,9 @@
 <!DOCTYPE html>
     <head>
         <!-- CSS -->
-        <link href="../shared/style.css" rel="stylesheet">
+        <link href="../../shared/style.css" rel="stylesheet">
+
+        <script type="text/javascript" src="../../shared/jquery.js"></script>
     </head>
     <body>
         <h1>
@@ -17,17 +19,24 @@
         </main>
 
         <script>
-            function ajoutDeDom() {
-                const myDiv = document.querySelector('div');
 
-                const monStrong = document.createElement('strong');
-                monStrong.textContent = "Lorem Ipsum";
+            $(function(){
+                $('.cta').on('click', () => {
+                    $('div').append("<strong>Lorem Ipsum</strong>");
+                })
+            });
 
-                myDiv.appendChild(monStrong);
-            }
+            // function ajoutDeDom() {
+            //     const myDiv = document.querySelector('div');
 
-            const monButton = document.getElementsByClassName("cta")[0];
-            monButton.addEventListener('click', ajoutDeDom);
+            //     const monStrong = document.createElement('strong');
+            //     monStrong.textContent = "Lorem Ipsum";
+
+            //     myDiv.appendChild(monStrong);
+            // }
+
+            // const monButton = document.getElementsByClassName("cta")[0];
+            // monButton.addEventListener('click', ajoutDeDom);
           
         </script>
     </body>

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
     <head>
         <!-- CSS -->
-        <link href="../shared/style.css" rel="stylesheet">
+        <link href="../../shared/style.css" rel="stylesheet">
+
+        <script type="text/javascript" src="../../shared/jquery.js"></script>
     </head>
     <body>
         <h1>
@@ -17,18 +19,17 @@
         </main>
 
         <script>
+            $(function(){ 
 
-            function ajoutElement() {
-                const main = document.getElementById("main");
+                function ajoutElement() {
 
-                const myDiv = document.createElement('div');
-                myDiv.textContent = main.children.length + 1;
+                   const nombre = $('div').length;
+                   $("main").append(`<div>${nombre + 1}</div>`);
+                }
 
-                
-                main.appendChild(myDiv);
-            }
+                setInterval(ajoutElement, 1000);
 
-            setInterval(ajoutElement, 1000);
+            });
         </script>
     </body>
 </html>

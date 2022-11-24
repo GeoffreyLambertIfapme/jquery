@@ -1,7 +1,9 @@
 <!DOCTYPE html>
     <head>
         <!-- CSS -->
-        <link href="../shared/style.css" rel="stylesheet">
+        <link href="../../shared/style.css" rel="stylesheet">
+
+        <script type="text/javascript" src="../../shared/jquery.js"></script>
     </head>
     <body>
         <h1>
@@ -16,17 +18,17 @@
         </main>
 
         <script>
-            // creer une function pour ajouter une div à mon contenu
-            const main = document.getElementById("main");
-
+          
+          $(function(){ 
             function ajoutElement() {
-                const myDiv = document.createElement('div');
-                myDiv.textContent = "ho une div!";
-
-                main.appendChild(myDiv);
+                $('main').append("<div>Ho une div</div>");
             }
-           // trouver comment utiliser le setInterval => exemple: setInterval(flashText, 1000);
-           setInterval(ajoutElement, 1000);
+
+            // trouver comment utiliser le setInterval => exemple: setInterval(flashText, 1000);
+            setInterval(ajoutElement, 1000);
+          })
+
+             
         </script>
     </body>
 </html>
